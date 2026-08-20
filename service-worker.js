@@ -1,6 +1,6 @@
 // Minimal offline cache. Your tracked data lives in localStorage/cloud sync,
 // not in this cache, so this doesn't affect saved entries either way.
-const CACHE_NAME = "babys-firsts-v1";
+const CACHE_NAME = "babys-firsts-v2";
 const ASSETS = ["./", "./index.html", "./app.bundle.js", "./manifest.json", "./icon-192.png", "./icon-512.png"];
 
 self.addEventListener("install", (event) => {
