@@ -3,17 +3,15 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
-<title>Starting Solids</title>
+<title>Baby's Firsts</title>
 
-<!-- iOS "Add to Home Screen" behavior -->
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-<meta name="apple-mobile-web-app-title" content="Starting Solids" />
+<meta name="apple-mobile-web-app-title" content="Baby's Firsts" />
 <link rel="apple-touch-icon" href="icon-192.png" />
 
-<!-- Android / general PWA -->
 <link rel="manifest" href="manifest.json" />
-<meta name="theme-color" content="#7C9473" />
+<meta name="theme-color" content="#E1794F" />
 <link rel="icon" href="icon-192.png" />
 
 <style>
@@ -24,44 +22,8 @@
 </head>
 <body>
 <div id="root"><div id="boot-loading">Loading…</div></div>
-
+<script src="app.bundle.js"></script>
 <script>
-  // Pick the phone-optimized build on narrow/touch screens, the full
-  // sidebar build otherwise — so a desktop browser gets the desktop layout
-  // and an iPhone (in Safari or as an installed home-screen app) gets the
-  // mobile layout, from the same URL.
-  (function () {
-    var BREAKPOINT = 820; // px
-
-    function isMobileViewport() {
-      return window.matchMedia("(max-width: " + BREAKPOINT + "px)").matches;
-    }
-
-    function loadApp() {
-      var script = document.createElement("script");
-      script.src = isMobileViewport() ? "mobile.bundle.js" : "desktop.bundle.js";
-      document.body.appendChild(script);
-    }
-
-    loadApp();
-
-    // If the window is resized across the breakpoint (e.g. rotating a
-    // tablet, or resizing a desktop browser window a lot), reload once so
-    // the correct build takes over — simpler and more reliable than trying
-    // to hot-swap two independently-bundled apps in place.
-    var wasMobile = isMobileViewport();
-    var resizeTimer = null;
-    window.addEventListener("resize", function () {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(function () {
-        var nowMobile = isMobileViewport();
-        if (nowMobile !== wasMobile) {
-          window.location.reload();
-        }
-      }, 300);
-    });
-  })();
-
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
       navigator.serviceWorker.register("service-worker.js").catch(function () {});
